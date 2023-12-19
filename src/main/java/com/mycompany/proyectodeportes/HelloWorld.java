@@ -23,19 +23,12 @@ public class HelloWorld extends HttpServlet {
 
     DBConnection db = null;
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String run = request.getParameter("run");
         String deporte = request.getParameter("deporte");
+        String aficionado = request.getParameter("aficionado");
+        String nombre = request.getParameter("idnombre");
         String task = request.getParameter("task");
 
         if (run == null) {  // not first run
@@ -72,6 +65,33 @@ public class HelloWorld extends HttpServlet {
                     response.sendRedirect("listAndForm.jsp");
 //                    listSportsAndShowForm(listSports, response);
                     break;
+                case "select":
+                    if (deporte.isBlank()) {
+                    } else {
+                        ArrayList<Deporte> listSports2 = null;
+                        listSports2 = db.listLike(deporte);
+                        HttpSession s2 = request.getSession();
+                        s2.setAttribute("listSports", listSports2);
+                        response.sendRedirect("listAndForm.jsp");
+                    }
+                    break;
+                case "insertAficionado":
+                    if (aficionado.isBlank() ) {
+                    } else {
+                        db.insertAficionado(aficionado);
+                    }
+                    response.sendRedirect("form.jsp");
+                    break;
+                case "cascadeDelete":
+                    int idNombre = Integer.parseInt(nombre);
+                    System.out.println("Entra en el switch");
+                    if (idNombre>=0 ) {
+                        db.deleteById(idNombre);
+                        System.out.println("Esta dentro de la funcion ");
+                    } else {
+                    }
+                    response.sendRedirect("form.jsp");
+                    break;
                 default:
                     break;
             }
@@ -81,40 +101,18 @@ public class HelloWorld extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

@@ -67,6 +67,21 @@
             <input type="submit" label="Delete">
         </form>
         <form action="helloworld">
+            Buscar deporte:<input type="text" name="deporte">
+            <input type="hidden" name="task" value="select" >
+            <input type="submit" label="Select">
+        </form>
+        <form action="helloworld">
+            Insertar aficionado:<input type="text" name="aficionado">
+            <input type="hidden" name="task" value="insertAficionado" >
+            <input type="submit" label="Insert Aficionado">
+        </form>
+        <form action="helloworld">
+            Borrar en cascada:<input type="text" name="idnombre">
+            <input type="hidden" name="task" value="cascadeDelete" >
+            <input type="submit" label="Cascade Delete">
+        </form>
+        <form action="helloworld">
             <input type="hidden" name="task" value="list" ">
             <input type="submit" value="List sports">
         </form>

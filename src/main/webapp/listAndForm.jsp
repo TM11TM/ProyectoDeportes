@@ -28,32 +28,32 @@
                 border-collapse: collapse;
                 margin-top: 20px;
             }
-
+            
             table, th, td {
                 border: 1px solid #ddd;
             }
-
+            
             th, td {
                 padding: 15px;
                 text-align: left;
             }
-
+            
             form {
                 margin-top: 20px;
             }
-
+            
             input[type="text"], input[type="submit"], input[type="hidden"] {
                 padding: 10px;
                 margin: 5px;
                 border-radius: 5px;
             }
-
+            
             input[type="submit"] {
                 background-color: #4caf50;
                 color: white;
                 cursor: pointer;
             }
-        </style>
+        </style>   <!--CSS-->
     </head>
     <h1>SportThingsManagement</h1>
     <%
